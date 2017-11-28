@@ -10,6 +10,10 @@ app.set('view engine', 'ejs');
 const movie = require('./routes/movie');
 const prodHouse = require('./routes/prodHouse');
 
+app.get('/', function(req,res) {
+  res.render('index');
+})
+
 app.use('/movies', movie);
 app.use('/prodHouses', prodHouse);
 
