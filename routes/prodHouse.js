@@ -61,17 +61,11 @@ router.get('/:id/assignMovie', function(req, res) {
 
 router.post('/:id/assignMovie', function(req, res) {
   arrColumn = ['id', 'prodHouseId'];
-  arrValue = [req.body.movieId, req.params.id];
+  arrValue = [req.body.movieId, null];
 
   Movie.findWhere(arrColumn, arrValue, function(err, checker) {
     if(!err) {
       if(checker.length > 0) {
-        ProductionHouse.findById(req.params.id, function(err, prodHouse) {
-          Movie.findAll(function(err, movies) {
-            res.render('assignMovie', {dataProdHouse: prodHouse[0], movies: movies, err: 'Movie already assigned'})
-          })
-        })
-      } else {
         Movie.updateAssign(req.params.id, req.body.movieId, function(err) {
           if(!err) {
             res.redirect('/movies');
@@ -79,6 +73,12 @@ router.post('/:id/assignMovie', function(req, res) {
             console.log(err);
             res.send(err)
           }
+        })
+      } else {
+        ProductionHouse.findById(req.params.id, function(err, prodHouse) {
+          Movie.findAll(function(err, movies) {
+            res.render('assignMovie', {dataProdHouse: prodHouse[0], movies: movies, err: 'Movie already assigned'})
+          })
         })
       }
     }

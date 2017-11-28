@@ -115,7 +115,11 @@ class Movie {
     let query = `SELECT * FROM Movies WHERE ${column[0]} = ${value[0]}`
     if(column.length > 1) {
       for (var i = 1; i < column.length; i++) {
-        query += ` AND ${column[i]} = ${value[i]}`
+        if(value[i] === null) {
+          query += ` AND ${column[i]} IS ${value[i]}`
+        } else {
+          query += ` AND ${column[i]} = ${value[i]}`
+        }
       }
     }
 
