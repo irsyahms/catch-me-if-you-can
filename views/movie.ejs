@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Halaman Movie</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Movie</th>
+          <th>Released Year</th>
+          <th>genre</th>
+          <th>Production House</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataMovie.forEach(movie => { %>
+          <tr>
+            <td><%= movie.id %></td>
+            <td><%= movie.name %></td>
+            <td><%= movie.released_year %></td>
+            <td><%= movie.genre %></td>
+            <td><%= movie.name_prodHouse %></td>
+            <td><a href="/movies/edit/<%= movie.id %>">Edit</a></td>
+            <td><a href="/movies/delete/<%= movie.id %>">Delete</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <br><br>
+    <form action="/movies" method="post">
+      <input type="text" name="name" placeholder="Name of Movie"><br>
+      <input type="text" name="released_year" placeholder="Input Released Year"><br>
+
+      <select name="genre">
+        <% let genre = ['action', 'comedy', 'drama', 'horor']
+             genre.forEach(g => { %>
+          <option value="<%= g %>"> <%= g %></option>
+        <% })%>
+      </select><br>
+
+      <select name="prodHouseId">
+        <option value="">----SELECT-----</option>
+        <% dataProdHouse.forEach(prodHouse => { %>
+          <option value="<%= prodHouse.id %>"> <%= prodHouse.name_prodHouse %></option>
+        <% })%>
+      </select><br>
+
+      <button type="submit">SAVE</button>
+    </form>
+  </body>
+</html>

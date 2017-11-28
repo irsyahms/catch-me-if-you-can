@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Halaman Prod. House</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Production House</th>
+          <th>Origin City</th>
+          <th>Movies</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% dataProdHouse.forEach(prodHouse => { %>
+          <tr>
+            <td><%= prodHouse.id %></td>
+            <td><%= prodHouse.name_prodHouse %></td>
+            <td><%= prodHouse.origin_city %></td>
+            <td>
+              <ol>
+                <% if(prodHouse.movies.length > 0) {
+                    prodHouse.movies.forEach((movie,index) => {
+                %>
+                  <li><%= movie %></li>
+                <% })} %>
+              </ol>
+            </td>
+            <td><a href="/prodHouses/edit/<%= prodHouse.id %>">Edit</a></td>
+            <td><a href="/prodHouses/<%= prodHouse.id %>/assignMovie">Assign Movie</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <br><br>
+
+    <form action="/prodHouses" method="post">
+      <input type="text" name="name_prodHouse" placeholder="Input Production House's Name"><br>
+      <input type="text" name="origin_city" placeholder="Input Origin City"><br>
+      <button type="submit">SAVE</button>
+    </form>
+  </body>
+</html>

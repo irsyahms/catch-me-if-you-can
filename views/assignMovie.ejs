@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1><%= dataProdHouse.name_prodHouse %></h1><br>
+    <% if(err) { %>
+      <h2 style="color:red"><%= err %></h2>
+    <% } %>
+    <form action="/prodHouses/<%= dataProdHouse.id %>/assignMovie" method="post">
+      <select name="movieId">
+        <% if(movies.length > 0) {
+            movies.forEach(movie => { %>
+          <option value="<%= movie.id %>"> <%= movie.name %></option>
+        <% }) } else { %>
+          <option value=""> THERE IS NO MOVIE TO ASSIGN </option>
+        <%}%>
+      </select><br>
+      <button type="submit">SAVE</button>
+    </form>
+
+
+
+
+  </body>
+</html>

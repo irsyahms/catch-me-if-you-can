@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form action="/prodHouses/edit/<%= prodHouse.id %>" method="post">
+      <input type="text" name="name_prodHouse" value="<%= prodHouse.name_prodHouse %>"><br>
+
+      <input type="text" name="origin_city" value="<%= prodHouse.origin_city %>"><br>
+
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>
