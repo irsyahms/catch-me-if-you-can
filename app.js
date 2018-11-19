@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 // adfkadjajsdkj
+//ini untuk menghandle method post
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
